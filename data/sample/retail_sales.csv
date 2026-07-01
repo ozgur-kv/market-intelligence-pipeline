@@ -1,0 +1,11 @@
+order_id,order_date,country,category,units_sold,unit_price_eur
+1001,2026-06-01,Germany,Electronics,2,99.99
+1002,2026-06-01,Germany,Home,4,24.50
+1003,2026-06-02,France,Electronics,1,249.99
+1004,2026-06-02,France,Home,6,18.75
+1005,2026-06-03,Netherlands,Electronics,3,79.99
+1006,2026-06-03,Germany,Home,2,34.50
+1007,2026-06-04,Netherlands,Home,5,22.00
+1008,2026-06-04,France,Electronics,2,129.99
+1009,2026-06-05,Germany,Electronics,1,499.99
+1010,2026-06-05,Netherlands,Home,3,41.00
