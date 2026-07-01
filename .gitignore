@@ -179,3 +179,26 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# ------------------------------------------------------------
+# Project-specific files
+# ------------------------------------------------------------
+
+# Local databases used for development and inspected in DBeaver
+*.duckdb
+*.sqlite
+*.sqlite3
+*.db
+
+# Raw data downloaded from APIs, websites, or external sources
+# Keep the folder itself, but do not commit its downloaded contents
+data/raw/*
+!data/raw/.gitkeep
+
+# Local secrets and machine-specific configuration
+.env.*
+!.env.example
+
+# Operating system clutter
+.DS_Store
+Thumbs.db
