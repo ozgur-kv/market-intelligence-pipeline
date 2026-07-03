@@ -202,3 +202,7 @@ data/raw/*
 # Operating system clutter
 .DS_Store
 Thumbs.db
+
+# Local Olist practice data and generated analysis outputs
+data/raw/olist/
+data/processed/olist/
