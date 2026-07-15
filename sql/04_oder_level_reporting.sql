@@ -41,3 +41,67 @@ ON o.order_id = ov.order_id
 WHERE o.order_status = 'delivered'
 GROUP BY purchase_month
 ORDER BY purchase_month;
+
+-- 2.
+WITH order_value AS (
+    SELECT
+        order_id,
+        SUM(price + freight_value) AS gross_order_value,
+        COUNT(order_item_id) AS item_count
+    FROM order_items
+    GROUP BY order_id
+)
+SELECT
+    *
+FROM order_value;
+
+-- 3.
+WITH order_value AS (
+    SELECT
+        order_id,
+        SUM(price + freight_value) AS gross_order_value,
+        COUNT(order_item_id) AS item_count,
+        AVG(price + freight_value) AS average_item_value
+    FROM order_items
+    GROUP BY order_id
+)
+SELECT
+    o.order_id,
+    o.order_status,
+    ov.gross_order_value,
+    ov.item_count,
+    ov.average_item_value
+FROM orders AS o
+LEFT JOIN order_value AS ov
+    ON o.order_id = ov.order_id;
+
+-- 4.
+SELECT
+    o.order_id,
+    o.order_status,
+    o.order_purchase_timestamp
+FROM orders AS o
+LEFT JOIN order_items AS oi
+    ON o.order_id = oi.order_id
+WHERE oi.order_id IS NULL;
+
+-- 5.
+WITH order_value AS (
+    SELECT
+        order_id,
+        SUM(price + freight_value) AS gross_order_value,
+        COUNT(order_item_id) AS item_count
+    FROM order_items
+    GROUP BY order_id
+)
+SELECT
+    o.order_status,
+    COUNT(DISTINCT o.order_id) AS distinct_orders,
+    SUM(ov.gross_order_value) AS total_gross_order_value,
+    AVG(ov.gross_order_value) AS average_gross_order_value,
+    AVG(ov.item_count) AS average_item_count
+FROM orders AS o
+LEFT JOIN order_value AS ov
+    ON o.order_id = ov.order_id
+GROUP BY o.order_status
+ORDER BY distinct_orders DESC;
